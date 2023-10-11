@@ -1,0 +1,100 @@
+
+{% extends './base_template.html' %}
+
+{% block all %}
+{% with title="Stats (colide)" %}
+    {{ block.super }}
+{% endwith %}
+{% endblock %}
+
+{% block js_files %}
+{{ block.super }}
+<script>
+  {% include './js/ext/chart.umd.min.js' %}
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="stat-div">
+    <canvas id="myChart"></canvas>
+</div>
+<script>
+user_stats = [];
+total_added = 0;
+total_deleted = 0;
+function get_user_stats() {
+    $.post( "./server_interface.py", { "get_user_stats": -1 }, function( data ) {
+        user_stats = data.user_stats;
+        //$("#stat-div").html(JSON.stringify(user_stats));
+        init_chart();
+    });
+}
+get_user_stats();
+
+var getDaysBetweenArray = function(s,e) {
+    for(var a=[],d=new Date(s);d<new Date(e);d.setDate(d.getDate()+1)) { 
+        a.push(new Date(d));
+    }
+    return a.slice(1);
+};
+
+const ctx = document.getElementById('myChart');
+
+function init_chart() {
+
+    let date_start = user_stats[0].day;
+    let date_end = user_stats[user_stats.length-1].day;
+    labels = [];
+    let data_del = [];
+    let data_add = [];
+    total_deleted = 0;
+    total_added = 0;
+    for (let i = 0; i<user_stats.length; i++) {
+        labels.push(user_stats[i].day);
+        data_del.push(user_stats[i].lines_deleted);
+        total_deleted += user_stats[i].lines_deleted;
+        data_add.push(user_stats[i].lines_added);
+        total_added += user_stats[i].lines_added;
+        if (i < user_stats.length - 1) {
+            for (let d of getDaysBetweenArray(user_stats[i].day,user_stats[i+1].day)) {
+                labels.push( d.toISOString().split('T')[0] );
+                data_del.push(0);
+                data_add.push(0);
+            }
+        }
+    }
+
+    const data = {
+    labels: labels,
+    datasets: [
+        {
+        label: 'Lines added',
+        data: data_add,
+        },
+        {
+        label: 'Lines deleted',
+        data: data_del,
+        },
+    ]
+    };
+    const config = {
+    type: 'line',
+    data: data,
+    options: {
+        responsive: true,
+        plugins: {
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: "Coding stats for {{dev_user_info.first_name}} (total added: "+total_added+", total deleted: "+total_deleted+")"
+        }
+        }
+    },
+    };
+
+    new Chart(ctx, config);
+}
+</script>
+{% endblock %}

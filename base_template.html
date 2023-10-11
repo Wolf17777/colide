@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% block all %}
+<html lang="de">
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {{title}} {%if brand_name %} - {{brand_name}}{% endif %}
+        </title>
+        {% block css_files %}
+        <style>
+           {% include "./css/ext/bootstrap.min.css" %}
+        </style>
+        {% endblock %}
+        {% block js_files %}
+             <script>
+                {% include "./js/ext/jquery.min.js" %}
+                {% include "./js/ext/popper.min.js" %}
+                {% include "./js/ext/bootstrap.min.js" %}
+                {% include "./js/alerts.js" %}
+             </script>
+        {% endblock %}
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </symbol>
+            <symbol id="chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </symbol>
+            {% block head_svgs %}
+            {% endblock %}
+        </svg>
+        {% block head_include %}
+        {% endblock %}
+    </head>
+    <body class="d-flex flex-column">
+        <div class="sticky-top">
+            {% block alert_div %}
+            <div class="container px-4 position-relative">
+                <div id="alert_div" class="alert_div px-4"></div>
+            </div>
+            {% endblock %}
+        </div>
+        <div class="bg-dark">
+            <div class="container px-4">
+            {% block banner %}
+            {% endblock %}
+            </div>
+        </div>
+        {% block content_div %}
+        <div id="content-div" class="container my-5 px-4">
+            {% if not hide_title %} 
+                <h1 id="title_div">
+                    {% if title != "" %} 
+                        {{ title }} 
+                    {% else %}
+                        {{ brand_name }}
+                    {% endif %}
+                </h1>
+            {% endif %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+        {% endblock %}
+        <div id="jsfw_home"></div>
+        {% for msg in request.session.error_messages %}
+            <script>add_alert('{{msg.0}}', '{{msg.1}}'); </script>
+        {% endfor %}
+    </body>
+</html>
+{% endblock %}
+
