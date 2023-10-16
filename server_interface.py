@@ -32,7 +32,7 @@ def handle_request(request, root_folder, dev_user_id, dev_user_session_id, dev_u
     if "get_file" in request_data:
         success,result = file_sync.get_file(root_folder,request_data["get_file"],dev_user_id, dev_user_session_id)
     elif "change" in request_data and "file" in request_data and "sync_id" in request_data:
-        success,result = file_sync.change(root_folder,request_data["file"],dev_user_id, dev_user_session_id, request_data["sync_id"], json.loads(request_data["change"]))
+        success,result = file_sync.change(root_folder,request_data["file"],dev_user_id, dev_user_session_id, dev_user_alias, request_data["sync_id"], json.loads(request_data["change"]))
     elif "changes_since" in request_data and "file" in request_data:
         success,result = file_sync.changes_since(root_folder,request_data,dev_user_id, dev_user_session_id)
     elif "get_file_tree" in request_data:

@@ -27,7 +27,7 @@ def get_file(root_folder, file, user_id, user_session_id):
     else:
         return False, "You don't have access to that file. If you just created the file wait for up to 10 minutes for the service to mod it."
 
-def change(root_folder,file,dev_user_id, dev_user_session_id,sync_id,changes):
+def change(root_folder,file,dev_user_id, dev_user_session_id,dev_user_alias,sync_id,changes):
     if file_manager.user_access_for_file(root_folder+file, dev_user_id) != "w":
         return False,"You are not allowed to change that file."
     d = {
