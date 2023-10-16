@@ -72,7 +72,7 @@ def change_mark_new_content(mark_id,sync_id,change_mark_new_content,new_content)
         d = {
             "answer": "success"
         }
-        if int() != m.sync_id:
+        if int(sync_id) != m.sync_id:
             d["answer"] = "wrong sync_id"
             return True,d
         m.has_new_content = change_mark_new_content == "true"
