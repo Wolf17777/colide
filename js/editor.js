@@ -13,6 +13,11 @@ function init_editor() {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = "vs-dark";
             else theme='vs';
         }
+        if (theme=='vs-dark') {
+            $('#colide_logo_img').css('filter', 'invert(100%)');
+        } else {
+            $('#colide_logo_img').css('filter', 'none');
+        }
         $("#fontSize-picker").val(parseInt(fontSize));
         editor_div.innerHTML = "";
         editor = monaco.editor.create(editor_div, {
@@ -242,6 +247,11 @@ function change_theme(new_theme) {
     if (diff_editor != null) 
         diff_editor.updateOptions({ theme: new_theme });
     if (active_mark != null) redraw_marks([active_mark.id]);
+    if (new_theme=='vs-dark') {
+        $('#colide_logo_img').css('filter', 'invert(100%)');
+    } else {
+        $('#colide_logo_img').css('filter', 'none');
+    }
     document.cookie = "dev-editor-theme="+new_theme+";SameSite=Strict;";
 }
 
