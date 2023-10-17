@@ -22,18 +22,18 @@ You must configure Django such that when a browser requests the editor, the file
 ```python
 from django.shortcuts import render
 def index(request, path):
-    response = render(request, 'colide/index.html')
+    response = render(request, 'colide/index.html') # change the path accordingly
     return response
 ```
 
 Moreover, it is important that a post request for `/your_colide_path/server_interface.py` returns as a response the one that the function `handle_request(...)` inside that file of the Colide root folder returns. This function takes a few parameters that must be specified accordingly. If needed, look at the documentation of the function inside that file. The code for this can look something like this.
 ```python
 from django.http import HttpResponseBadRequest
-from colide import server_interface
+from colide import server_interface # change the path accordingly
 def index(request, path):
     root_folder = "your_root_folder" # This is the root folder for the files that you want to edit in the editor.
     try:
-        user_id = int(request.COOKIES["user_id"]) # The user id must be the uid of a linux user.
+        user_id = int(request.COOKIES["user_id"]) # The user id must be the uid of a linux user with access to the directory specified by root_folder.
         user_session_id = request.COOKIES["user_session_id"]
         # (!) If not done already, make sure to also verify the session id for the user. (!)
         user_alias = request.COOKIES["user_alias"]
