@@ -44,4 +44,4 @@ def index(request, path):
 ```
 
 # Security
-Since Colide edits actual files on your server, always make sure that the Django user has strongly limited access on the server. Moreover, Colide should never be openly availible on the internet, always hide it behind a secure authentication process for all users.
+Since Colide edits actual files on your server, always make sure that the Django user has strongly limited access on the server. Moreover, Colide should never be openly available on the internet, always hide it behind a secure authentication process for all users.
