@@ -128,7 +128,11 @@ function init_file(filepath=current_file) {
 function init_content() {
     exit_suggestion_mode(true);
     model.dispose();
-    model = monaco.editor.createModel(synchronised_content.getValue(), undefined, monaco.Uri.file(current_file));
+    let language=undefined;
+    if (current_file.endsWith('.svelte')) {
+        language='html';
+    }
+    model = monaco.editor.createModel(synchronised_content.getValue(), language, monaco.Uri.file(current_file));
     model.onDidChangeContent( submit_changes );
     editor.setModel(model);
     editor.updateOptions({ readOnly: read_only_access });
