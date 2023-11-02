@@ -105,6 +105,7 @@ function init_file(filepath=current_file) {
     
     $("#code-header-filename").html(filename_pretty);
     $("#code-header-file-info").show();
+    $("#alert_init_file").alert('close');
     add_alert('Reading file...', 'warning', 'alert_init_file', false);
     $.post( server_interface_path, { "get_file": current_file }, function( data ) {
         sync_id = data.latest_entry_id;

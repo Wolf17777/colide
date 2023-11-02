@@ -316,12 +316,20 @@ function refresh_gunicorn() {
     });
 }
 
+build_js_running=false;
 function build_js() {
+    if (build_js_running) return;
+    build_js_running = true;
+    add_alert('Building...', 'warning', 'alert_build_js', false);
     $.post( server_interface_path, { build_js: current_file }, function( data ) {
         if (data.answer != "success") alert("Building failed: " + data.answer);
-        else alert("Successfully build index.js.");
+        else add_alert("Successfully build index.js.", 'success', '', true, "#alert_div",4000);
+        build_js_running = false;
+        $("#alert_build_js").alert('close');
     }).fail(function( e ) {
         alert(e.responseText);
+        build_js_running = false;
+        $("#alert_build_js").alert('close');
     });
 }
 
