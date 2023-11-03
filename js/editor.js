@@ -91,8 +91,8 @@ function init_file(filepath=current_file) {
     document.title = filepath_array[filepath_array.length-1];
     history.replaceState(null, '', window.location.pathname+'?file='+filepath);
     let filename_pretty = filepath_array.join("<span class='slash'>/</span>");
-    if (filepath.endsWith("index.svelte")) {
-        filename_pretty += ' <a title="build" class="slash" style="padding-right: 25px;" onclick="build_js()" href="#"><svg class="icon-visit-site"><use xlink:href="#wrench-circle"></use></svg></a>';
+    if (filepath.endsWith("index.svelte") || filepath.endsWith("svelte.main")) {
+        filename_pretty += ' <a title="build" class="slash" style="padding-right: 25px;" onclick="build_js()" href="#"><svg class="icon-visit-site"><use xlink:href="#wrench-js"></use></svg></a>';
     }
     for (let template_folder_name of template_folder_names) {
         let tpath = filepath.split(template_folder_name)
