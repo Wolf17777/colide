@@ -167,6 +167,7 @@ function init_file_tree(open_file=current_file) {
     add_alert('Fetching file tree...', 'warning', 'alert_init_file_tree', false);
     $.post( server_interface_path, { "get_file_tree": 1 }, function( data ) {
         file_tree = data.tree;
+        default_files = data.default_files;
         let container = $("#folder-files");
         container.html("");
         for (c of rec_retrieve_dir(open_file, "",file_tree)) {
@@ -188,11 +189,13 @@ file_execute_action = 'none'
 function file_execute() {
     $("#fileModal").modal('hide');
     if (file_execute_action=='new') {
-        f = $('#input_file1').val();
+        let f = $('#input_file1').val();
+        let default_content = $('#select_file_default').val();
+        if (default_content == 'empty') default_content = null
         if (f == null) return false;
         while (f.length != 0 && f[0] == "/") f = f.substring(1);
         if (f == null || f == "") return false;
-        $.post( server_interface_path, { file_create: f }, function( data ) {
+        $.post( server_interface_path, { file_create: f, default_content: default_content }, function( data ) {
             init_file(f);
             init_file_tree();
         }).fail(function( e ) {
@@ -244,20 +247,35 @@ function file_execute() {
     return false;
 }
 
+function select_file_default_changed() {
+    let val=$('#select_file_default').val();
+    if (val=='empty') return;
+    let current_val = $('#input_file1').val();
+    $('#input_file1').val( current_val.substring(0,current_val.lastIndexOf("/")+1) + val );
+
+}
+
 function new_file() {
-    $('fileModalLabel').val('New file');
+    $('#fileModalLabel').html('New file');
     $('#input_file1_label').html("Enter the full path of the new file (non-existing folders will be created)");
     $('#input_file1').val(current_file);
     $('#input_file_button').html('Create');
     file_execute_action = 'new';
     $('#input_file2_label').hide();
     $('#input_file2').hide();
+    $('#select_file_default_label').show();
+    let select_file_default_html = '<option value="empty" selected>Empty file</option>';
+    for (f of default_files) {
+        select_file_default_html += '<option value="'+f+'">'+f+'</option>';
+    }
+    $('#select_file_default').html(select_file_default_html);
+    $('#select_file_default').show();
     $("#fileModal").modal('show');
     $('#input_file1').focus();
 }
 
 function move_file() {
-    $('fileModalLabel').val('Move file');
+    $('#fileModalLabel').html('Move file');
     $('#input_file1_label').html("Enter the full path of the file you want to move");
     $('#input_file1').val(current_file);
     $('#input_file2_label').html("Enter the full path of where you want to move the file (non-existing folders will be created)");
@@ -266,11 +284,13 @@ function move_file() {
     file_execute_action = 'move';
     $('#input_file2_label').show();
     $('#input_file2').show();
+    $('#select_file_default_label').hide();
+    $('#select_file_default').hide();
     $("#fileModal").modal('show');
     $('#input_file1').focus();
 }
 function copy_file() {
-    $('fileModalLabel').val('Copy file');
+    $('#fileModalLabel').html('Copy file');
     $('#input_file1_label').html("Enter the full path of the file you want to copy");
     $('#input_file1').val(current_file);
     $('#input_file2_label').html("Enter the full path of the file that will be a copy of the selected file (non-existing folders will be created)");
@@ -279,57 +299,45 @@ function copy_file() {
     file_execute_action = 'copy';
     $('#input_file2_label').show();
     $('#input_file2').show();
+    $('#select_file_default_label').hide();
+    $('#select_file_default').hide();
     $("#fileModal").modal('show');
     $('#input_file1').focus();
 }
 function delete_file() {
-    $('fileModalLabel').val('Delete file');
+    $('#fileModalLabel').html('Delete file');
     $('#input_file1_label').html("Enter the full path of the file or folder you want to delete.");
     $('#input_file1').val(current_file);
     $('#input_file_button').html('Delete');
     file_execute_action = 'delete';
     $('#input_file2_label').hide();
     $('#input_file2').hide();
+    $('#select_file_default_label').hide();
+    $('#select_file_default').hide();
     $("#fileModal").modal('show');
     $('#input_file1').focus();
 }
-function refresh_files() {
+function reload_files() {
     init_file_tree();
     init_file();
 }
 
 
-refresh_gunicorn_running = false;
-function refresh_gunicorn() {
-    if (refresh_gunicorn_running) return;
-    refresh_gunicorn_running = true;
-    add_alert('Refreshing...', 'warning', 'alert_refresh_gunicorn', false);
-    $.post( server_interface_path, { reload_gunicorn: 1 }, function( data ) {
+reload_server_running = false;
+function reload_server() {
+    if (reload_server_running) return;
+    reload_server_running = true;
+    add_alert('Refreshing...', 'warning', 'alert_reload_server', false);
+    $.post( server_interface_path, { build_reload: 1 }, function( data ) {
         if (data.answer != "success") alert("Reloading gunicorn failed: " + data.answer);
-        else add_alert('Successfully refreshed gunicorn.', 'success', '', true, "#alert_div",4000);
-        refresh_gunicorn_running = false;
-        $("#alert_refresh_gunicorn").alert('close');
+        else add_alert('Successfully reloaded server.', 'success', '', true, "#alert_div",4000);
+        reload_server_running = false;
+        $("#alert_reload_server").alert('close');
     }).fail(function( e ) {
         alert(e.responseText);
-        refresh_gunicorn_running = false;
-        $("#alert_refresh_gunicorn").alert('close');
+        reload_server_running = false;
+        $("#alert_reload_server").alert('close');
     });
 }
 
-build_js_running=false;
-function build_js() {
-    if (build_js_running) return;
-    build_js_running = true;
-    add_alert('Building...', 'warning', 'alert_build_js', false);
-    $.post( server_interface_path, { build_js: current_file }, function( data ) {
-        if (data.answer != "success") alert("Building failed: " + data.answer);
-        else add_alert("Successfully build index.js.", 'success', '', true, "#alert_div",4000);
-        build_js_running = false;
-        $("#alert_build_js").alert('close');
-    }).fail(function( e ) {
-        alert(e.responseText);
-        build_js_running = false;
-        $("#alert_build_js").alert('close');
-    });
-}
 

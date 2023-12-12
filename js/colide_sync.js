@@ -251,6 +251,9 @@ function submit_changes() {
         return;
     }
     unsaved_content = true;
+    if (build_hook_dependencies[current_file] != undefined) {
+        build_hooks_modified[build_hook_dependencies[current_file]] = 1;
+    }
     new_synchronised_content = model.getValue();
     let data = {
         change: JSON.stringify(changes.lines), sync_id: sync_id, file: current_file

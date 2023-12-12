@@ -96,7 +96,7 @@ def ignore_folder(folder):
     folder_list = folder.split("/")
     return ".git" in folder_list or "__pycache__" in folder_list or 'node_modules' in folder_list
 
-def get_file_tree(root_folder, user_id):
+def get_file_tree(root_folder, user_id, default_files_folder=None):
     tree = { "dirs": {}, "files": [] }
     for subdir, dirs, files in os.walk(root_folder):
         if subdir.startswith(root_folder):
@@ -116,10 +116,18 @@ def get_file_tree(root_folder, user_id):
                 #filename = ("" if subdir == "." else subdir[2:]+"/")+f # ignore "./"
                 filename = (subdir+"/" if subdir != '' else '')+f # needs / before file if not root folder
                 root["files"].append( [filename, user_access_for_file(root_folder+filename, user_id)] )
-    return tree
+    default_files = []
+    if default_files_folder != None:
+        for subdir, dirs, files in os.walk(default_files_folder):
+            if subdir.startswith(default_files_folder):
+                subdir = subdir[len(default_files_folder):]
+            for f in files:
+                if not f.endswith(".lock"):
+                    default_files.append(subdir+f)
+    return {"tree":tree, 'default_files': default_files}
 
 
-def file_create(root_folder,new_file):
+def file_create(root_folder,new_file, default_files_folder=None, default_content_file=None):
     try:
         if new_file[0] == "/":
             new_file = new_file[1:]
@@ -131,7 +139,12 @@ def file_create(root_folder,new_file):
             folder = new_file[:new_file.rindex("/")]
             if not os.path.exists(root_folder+folder):
                 os.makedirs(root_folder+folder)
-        open(root_folder+new_file, 'a').close()
+        if default_files_folder!=None and default_content_file!=None and default_content_file!='':
+            if not os.path.exists(default_files_folder+default_content_file):
+                return False,"Default file "+default_files_folder+default_content_file+" does not exist."
+            shutil.copyfile(default_files_folder+default_content_file, root_folder+new_file)
+        else:
+            open(root_folder+new_file, 'a').close()
         return True,{"answer":"success"}
     except:
         return False,"Internal error."

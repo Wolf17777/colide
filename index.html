@@ -6,8 +6,6 @@
 {% endwith %}
 {% endblock %}
 
-
-
 {% block css_files %}
 {{ block.super }}
 <style>{% include './css/colide.css' %}</style>
@@ -45,12 +43,15 @@
 <symbol viewBox="0 0 16 16" id="si-graph-up">
     <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"/>
 </symbol>
+<symbol viewBox="0 0 512 486.46" id='server-reload'>
+    <path d="M70.61 106.63c70.08 23.44 184.92 23.44 255 0 28.41-9.5 45.98-20.99 45.98-32.21 0-11.22-17.57-22.71-45.98-32.21-70.61-23.45-184.38-23.42-255 0-60.22 20.13-61.9 43.74 0 64.42zm303.38 275.91c4.1.54 6.99 4.42 6.45 8.65-.53 4.22-4.3 7.2-8.39 6.65l-8.5-1.14c4.38 7.26 10.16 12.55 16.58 15.91a39.648 39.648 0 0 0 21.62 4.42c7.33-.58 14.53-3.2 20.66-7.79 8.06-6.03 14.37-15.53 16.93-28.37.82-4.18 4.78-6.87 8.82-6.02 4.05.85 6.66 4.93 5.84 9.1-3.38 16.97-11.87 29.65-22.78 37.81a54.425 54.425 0 0 1-28.35 10.7c-10.04.8-20.3-1.19-29.55-6.05-8.25-4.33-15.7-10.92-21.44-19.82l-1.42 6.54c-.89 4.16-4.88 6.79-8.92 5.87-4.03-.91-6.58-5.03-5.69-9.19l5.26-24.27c.7-4.04 4.37-6.84 8.35-6.31l24.53 3.31zm73.42-57.75c.89-4.16 4.89-6.78 8.92-5.87 4.03.92 6.58 5.04 5.69 9.2l-5.38 24.82c-.85 3.96-4.54 6.54-8.37 5.97l-24.18-3.23c-4.09-.53-7-4.4-6.48-8.62.51-4.23 4.26-7.21 8.36-6.68l8.21 1.09c-4.15-7.06-9.68-12.27-15.85-15.69l-.37-.19c-6.59-3.57-13.97-5.13-21.24-4.73-7.23.39-14.38 2.77-20.56 7.06-8.58 5.96-15.35 15.71-18.03 29.16-.83 4.17-4.78 6.87-8.83 6.02-4.05-.86-6.66-4.93-5.84-9.11 3.56-17.8 12.69-30.83 24.31-38.9a54.422 54.422 0 0 1 28.18-9.66c9.89-.55 19.95 1.6 28.99 6.49l.42.25c7.95 4.39 15.08 10.89 20.56 19.52l1.49-6.9zm-5.79-136.65c-1.04-.94-2.5-1.57-3.96-1.57-.31 0-.63 0-.94.11H299.01c-7.22 0-13.13 5.91-13.13 13.14v273.43c0 7.24 5.89 13.13 13.13 13.13h199.85c7.24 0 13.14-5.89 13.14-13.13V263.21c0-2.66-.3-4.46-1.78-5.94l-67.87-68.72c-.21-.2-.31-.3-.52-.41h-.21zm-18.46 15.73v47.34c0 13.72 13.24 24.7 25.03 24.7h46.75v191.93c.01.61-.55 1.45-1.36 1.35H304.32c-.73 0-1.35-.66-1.35-1.35V205.22c0-.74.62-1.35 1.35-1.35h118.84zm17.92 48.41v-43.06l48.48 49.1h-42.43c-3.29 0-6.05-2.74-6.05-6.04zM24.91 196.09c2.24 10.47 19.3 21.02 45.74 29.85 52.85 17.68 121.85 20.52 177.75 15.14v24.79c-58.75 5.47-129.88 2.02-185.47-16.55A155.626 155.626 0 0 1 25 231.43l-.01 73.87c2.23 10.47 19.3 21.03 45.74 29.86 53.11 17.7 121.55 20.44 177.67 15.18v24.67c-58.94 5.33-129.72 2.07-185.51-16.63-13.39-4.19-26.18-10.23-37.93-17.85v73.87c2.23 10.47 19.3 21.02 45.74 29.85 52.91 17.64 121.77 20.53 177.71 15.14v19.18c0 1.85 0 3.69.27 5.54-58.85 5.44-130.07 2.07-185.75-16.6C44.53 461.39.16 441.23.16 417.1v-7.84C.05 299.23 0 184.46 0 74.62c0-23.23 24.01-42.73 62.77-55.71 75.59-25.2 195.11-25.24 270.69.04 34.95 11.69 58.41 29.03 62.3 49.39.46 1.3.7 2.67.7 4.05v74.16h-24.75v-34.74c-11.86 7.72-24.78 13.84-38.26 18.08-75.23 25.39-195.39 25.15-270.68 0a155.164 155.164 0 0 1-37.93-17.86l-.01 84.06h.08z"/>
+</symbol>
 <symbol viewBox="0 0 16 16" id="wrench-circle">
     <path d="M12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z"/>
     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0a7 7 0 1 0-13.202 3.249l1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2A7 7 0 0 0 15 8Zm-8.295.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z"/>
 </symbol>
 <symbol id="wrench-js" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2H8v-1h4a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.186 15.29a1.176 1.176 0 0 1-.111-.449h.765a.578.578 0 0 0 .255.384c.07.049.153.087.249.114.095.028.202.041.319.041.164 0 .302-.023.413-.07a.559.559 0 0 0 .255-.193.507.507 0 0 0 .085-.29.387.387 0 0 0-.153-.326c-.101-.08-.255-.144-.462-.193l-.619-.143a1.72 1.72 0 0 1-.539-.214 1.001 1.001 0 0 1-.351-.367 1.068 1.068 0 0 1-.123-.524c0-.244.063-.457.19-.639.127-.181.303-.322.528-.422.224-.1.483-.149.776-.149.305 0 .564.05.78.152.216.102.383.239.5.41.12.17.186.359.2.566h-.75a.56.56 0 0 0-.12-.258.624.624 0 0 0-.247-.181.923.923 0 0 0-.369-.068c-.217 0-.388.05-.513.152a.472.472 0 0 0-.184.384c0 .121.048.22.143.3a.97.97 0 0 0 .405.175l.62.143c.218.05.406.12.566.211.16.09.285.21.375.358.09.148.135.335.135.56 0 .247-.063.466-.188.656a1.216 1.216 0 0 1-.539.439c-.234.105-.52.158-.858.158-.254 0-.476-.03-.665-.09a1.404 1.404 0 0 1-.478-.252 1.13 1.13 0 0 1-.29-.375Zm-3.104-.033A1.32 1.32 0 0 1 0 14.791h.765a.576.576 0 0 0 .073.27.499.499 0 0 0 .454.246c.19 0 .33-.055.422-.164.092-.11.138-.265.138-.466v-2.745h.79v2.725c0 .44-.119.774-.357 1.005-.236.23-.564.345-.984.345a1.59 1.59 0 0 1-.569-.094 1.145 1.145 0 0 1-.407-.266 1.14 1.14 0 0 1-.243-.39Z"/>
+  <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
 </symbol>
 <symbol viewBox="0 0 16 16" id="caret-left">
     <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
@@ -69,120 +70,142 @@
 {% block content_div %}
 <div id="container" class='monaco-editor'>
     <div id='loading_screen'><div class="loader"></div></div>
-    <div id="top">
-        <div id="sidebar">
-            <div class="header">
-                <button title="new" onclick="new_file();"><svg class="icon"><use xlink:href="#si-elusive-file-new"></use></svg></button><button title="move" onclick="move_file();"><svg class="icon"><use xlink:href="#si-bootstrap-move"></use></svg></button><button title="copy" onclick="copy_file();"><svg class="icon"><use xlink:href="#si-bootstrap-copy"></use></svg></button><button title="delete" onclick="delete_file();"><svg class="icon"><use xlink:href="#si-bootstrap-trash"></use></svg></button>
-                <button title="refresh gunicorn" onclick="refresh_gunicorn()" style="float:right;"><svg class="icon"><use xlink:href="#wrench-circle"></use></svg></button><button title="build js" onclick="build_js()" style="float:right;"><svg class="icon"><use xlink:href="#wrench-js"></use></svg></button><button title="refresh files" onclick="refresh_files()" style="float:right;"><svg class="icon"><use xlink:href="#si-bootstrap-refresh"></use></svg></button>
+    <div class='d-flex h-100'>
+        <div id='file-area'>
+            <div class='top'>
+                <div class="header d-flex">
+                    <button title="build" onclick="build_open()"><svg class="icon"><use xlink:href="#wrench-js"></use></svg></button>
+                    <button title="build modified" onclick="build_modified()"><svg class="icon"><use xlink:href="#wrench-circle"></use></svg></button>
+                    <button class='ms-auto'title="reload colide" onclick="reload_colide()"><svg class="icon"><use xlink:href="#si-bootstrap-refresh"></use></svg></button>
+                    <button title="reload server" onclick="reload_server()"><svg class="icon"><use xlink:href="#server-reload"></use></svg></button>
+                </div>
             </div>
-            <!--<div id="open-files"></div>-->
-            <div id="folder-files-wrapper">
-                <div id="folder-files">Collecting files...</div>
+            <div class='mid'>
+                <div id="folder-files-wrapper">
+                    <div id="folder-files">Collecting files...</div>
+                </div>
+            </div>
+            <div class='bot'>
+                <div class="header d-flex">
+                    <button title="new" onclick="new_file();"><svg class="icon"><use xlink:href="#si-elusive-file-new"></use></svg></button>
+                    <button title="move" onclick="move_file();"><svg class="icon"><use xlink:href="#si-bootstrap-move"></use></svg></button>
+                    <button title="copy" onclick="copy_file();"><svg class="icon"><use xlink:href="#si-bootstrap-copy"></use></svg></button>
+                    <button class='ms-auto'title="delete" onclick="delete_file();"><svg class="icon"><use xlink:href="#si-bootstrap-trash"></use></svg></button>
+                    
+                </div>
+                
             </div>
         </div>
-        <div id="code-area">
-            <div id="code-header">
-                <div id="code-header-file-info" style="display: none;">
-                    <a title="last file" id='caret_open_last' class='disabled' style="padding-right: 25px;" onclick="open_last()" href="#"><svg class="icon-visit-site"><use xlink:href="#caret-left"></use></svg></a><select id="select-lastfile" class='lastfile-selector' onchange="open_nav_selected()"></select><a title="next file" id='caret_open_next' class='disabled' style="padding-right: 30px;" onclick="open_next()" href="#"><svg class="icon-visit-site"><use xlink:href="#caret-right"></use></svg></a>
-                    <span id="code-header-filename" class='filename'></span>
-                    <span id="code-header-close" class='close' onClick='click_close_file()'>&#10005;</span>
-                    <div class='sync'>
-                        <span id="code-header-sync-connection"></span> / <span id="code-header-sync-changes"></span>
+        <div id='code-area'>
+            <div class='top'>
+                <div id="code-header">
+                    <div id="code-header-file-info" style="display: none;">
+                        <a title="last file" id='caret_open_last' class='disabled' style="padding-right: 25px;" onclick="open_last()" href="#"><svg class="icon-visit-site"><use xlink:href="#caret-left"></use></svg></a><select id="select-lastfile" class='lastfile-selector' onchange="open_nav_selected()"></select><a title="next file" id='caret_open_next' class='disabled' style="padding-right: 30px;" onclick="open_next()" href="#"><svg class="icon-visit-site"><use xlink:href="#caret-right"></use></svg></a>
+                        <span id="code-header-filename" class='filename'></span>
+                        <span id="code-header-close" class='close' onClick='click_close_file()'>&#10005;</span>
+                        <div class='sync'>
+                            <span id="code-header-sync-connection"></span> / <span id="code-header-sync-changes"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="code-editor">
-                <div id="code-editor-wrapper" class="editor-wrapper">Loading editor...</div>
-                <div id="code-diff-editor-wrapper" class="editor-wrapper"></div>
-            </div>
-            <div id="sidebar-right">
-                <div id="activity-div" class="sidebar-right-div">
-                    <div class="sidebar-right-header">
-                        <select id="activity-filter-type" onchange="update_activity()">
-                            <option value="all" class="line-decoration-remark">all</option>
-                            <option value="remark" class="line-decoration-remark">remark</option>
-                            <option value="todo" class="line-decoration-todo">todo</option>
-                            <option value="question" class="line-decoration-question">question</option>
-                            <option value="suggestion" class="line-decoration-suggestion">suggestion</option>
-                        </select>
-                        <div class="resolve-div">
-                            <select id="activity-filter-file" onchange="update_activity()">
-                                <option value="all">all</option>
-                                <option value="file">current file</option>
+            <div class='mid'>
+                <div id="code-editor">
+                    <div id="code-editor-wrapper" class="editor-wrapper">Loading editor...</div>
+                    <div id="code-diff-editor-wrapper" class="editor-wrapper"></div>
+                </div>
+                <div id="sidebar-right">
+                    <div id="activity-div" class="sidebar-right-div">
+                        <div class="sidebar-right-header">
+                            <select id="activity-filter-type" onchange="update_activity()">
+                                <option value="all" class="line-decoration-remark">all</option>
+                                <option value="remark" class="line-decoration-remark">remark</option>
+                                <option value="todo" class="line-decoration-todo">todo</option>
+                                <option value="question" class="line-decoration-question">question</option>
+                                <option value="suggestion" class="line-decoration-suggestion">suggestion</option>
                             </select>
+                            <div class="resolve-div">
+                                <select id="activity-filter-file" onchange="update_activity()">
+                                    <option value="all">all</option>
+                                    <option value="file">current file</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="activity-inner-content" class="inner-content">
+                            <div id="activity-feed"></div>
+                            <div id="user-activity-feed"></div>
                         </div>
                     </div>
-                    <div id="activity-inner-content" class="inner-content">
-                        <div id="activity-feed"></div>
-                        <div id="user-activity-feed"></div>
-                    </div>
-                </div>
-                <div id="mark-div" class="sidebar-right-div">
-                    <div class="sidebar-right-header">
-                        <select id="select-mark-type" onchange="mark_type_selected()">
-                            <option value="remark" class="line-decoration-remark">remark</option>
-                            <option value="todo" class="line-decoration-todo">todo</option>
-                            <option value="question" class="line-decoration-question">question</option>
-                            <option value="suggestion" class="line-decoration-suggestion">suggestion</option>
-                        </select>
-                        <div class="resolve-div">
-                            <span id="resolve_deny_button" title="deny suggested changes" onclick="resolve_active_mark(false)" class="deny"><big><b>&#10005;</b></big></span>
-                            <span id="resolve_button" title="resolve" onclick="resolve_active_mark(true)" class="accept"><big><b>&#10003;</b></big></span>
-                            <span id="mark_reload_button" title="reload comments" onclick="reload_right_sidebar()" class="reload"><big><b>&#8635;</b></big></span>
+                    <div id="mark-div" class="sidebar-right-div">
+                        <div class="sidebar-right-header">
+                            <select id="select-mark-type" onchange="mark_type_selected()">
+                                <option value="remark" class="line-decoration-remark">remark</option>
+                                <option value="todo" class="line-decoration-todo">todo</option>
+                                <option value="question" class="line-decoration-question">question</option>
+                                <option value="suggestion" class="line-decoration-suggestion">suggestion</option>
+                            </select>
+                            <div class="resolve-div">
+                                <span id="resolve_deny_button" title="deny suggested changes" onclick="resolve_active_mark(false)" class="deny"><big><b>&#10005;</b></big></span>
+                                <span id="resolve_button" title="resolve" onclick="resolve_active_mark(true)" class="accept"><big><b>&#10003;</b></big></span>
+                                <span id="mark_reload_button" title="reload comments" onclick="reload_right_sidebar()" class="reload"><big><b>&#8635;</b></big></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inner-content">
-                        <div id="insert-change-div" class="talkbubble">
-                            <div id="insert-change-div-text"></div>
-                            <button id="insert-change-button" onclick="insert_change()">insert change</button>
-                            <span id="insert-change-server-state"></span>
-                        </div>
-                        <div id="written-comments"></div>
-                        <div id="write-comment" class="talkbubble right">
-                            <textarea id="write-comment-textarea" placeholder="write a comment..."></textarea>
-                            <div id="write-comment-buttons">
-                            <button onclick="comment_submit()">send</button>
-                            <button onclick="comment_cancel()">cancel</button>
-                            </div><!--
-                            <span onclick="comment_cancel()" class="close">&#10005;</span>
-                            <span onclick="comment_submit()" class="submit"><svg class="icon"><use xlink:href="#si-bootstrap-send"></use></svg></span>
-                            -->
+                        <div class="inner-content">
+                            <div id="insert-change-div" class="talkbubble">
+                                <div id="insert-change-div-text"></div>
+                                <button id="insert-change-button" onclick="insert_change()">insert change</button>
+                                <span id="insert-change-server-state"></span>
+                            </div>
+                            <div id="written-comments"></div>
+                            <div id="write-comment" class="talkbubble right">
+                                <textarea id="write-comment-textarea" placeholder="write a comment..."></textarea>
+                                <div id="write-comment-buttons">
+                                <button onclick="comment_submit()">send</button>
+                                <button onclick="comment_cancel()">cancel</button>
+                                </div><!--
+                                <span onclick="comment_cancel()" class="close">&#10005;</span>
+                                <span onclick="comment_submit()" class="submit"><svg class="icon"><use xlink:href="#si-bootstrap-send"></use></svg></span>
+                                -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div id="bottom">
-        <div class="text-input">
-            <a href="/" style=""><img id='colide_logo_img' src='colide.svg' style="height: 30px;"></a>
-            <a style="" title="stats" id="stats_button" href="stats.html" target="_blank"><svg class="icon"><use xlink:href="#si-graph-up"></use></svg></a>
-            <span style="float:right;">
-                <a title="change theme" id="theme_button" href="#"><svg class="icon"><use xlink:href="#moon"></use></svg></a>
-            </span>
-            <span style="float:right;padding-right: 8px;">
-                <label for="fontSize" style="padding-right: 8px;">Font size </label><input style="width:46px;" type="number" id="fontSize-picker" onchange="font_size_picker_change(event);" name="fontSize" min="8" max="32">
-            </span>
-            <span style="float:right; position: relative; padding-right: 60px;"">
-                <label for="track-position-checkbox">Share position</label>
-                <label class="switch" style="">
-                    <input id="track-position-checkbox" type="checkbox" onchange="track_position()">
-                    <span class="switch-slider round"></span>
-                </label>
-            </span>
-            <span style="padding-right: 20px; float:right;">
-                <a title="write comment" id="new_mark_button" href="#"><svg class="icon"><use xlink:href="#si-bootstrap-chat"></use></svg></a>
-                <!--<a title="enter suggestion mode" id="suggest_mode_button" href="#" onclick="toggle_suggest_mode()"><svg class="icon"><use xlink:href="#si-bootstrap-suggest"></use></svg></a>-->
-                <a title="all comments" id="activity_button" href="#" onclick="view_activity_feed()"><svg class="icon"><use xlink:href="#si-bootstrap-activity"></use></svg><span id="number_active_users"></span></a>
-            </span>
-            <!--<span class="prompt">]</span>
-            <input type="text" placeHolder="type commands here..." id="console-input" autocorrect="off" autocapitalize="off" spellcheck="false"/>-->
+            <div class='bot'>
+                <div class="footer d-flex">
+                    <a href="/" class="my-auto"><img id='colide_logo_img' src='colide.svg' style="height: 30px;"></a>
+                    <a class="ms-2 my-auto" title="stats" id="stats_button" href="stats.html" target="_blank"><svg class="icon"><use xlink:href="#si-graph-up"></use></svg></a>
+
+                    <span class="ms-auto my-auto" style="padding-right: 20px;">
+                        <a title="write comment" id="new_mark_button" href="#"><svg class="icon"><use xlink:href="#si-bootstrap-chat"></use></svg></a>
+                        <!--<a title="enter suggestion mode" id="suggest_mode_button" href="#" onclick="toggle_suggest_mode()"><svg class="icon"><use xlink:href="#si-bootstrap-suggest"></use></svg></a>-->
+                        <a title="all comments" id="activity_button" href="#" onclick="view_activity_feed()"><svg class="icon"><use xlink:href="#si-bootstrap-activity"></use></svg><span id="number_active_users"></span></a>
+                    </span>
+                    <span class="my-auto position-relative" style="padding-right: 60px;">
+                        <label for="track-position-checkbox">Share position</label>
+                        <label class="switch" style="">
+                            <input id="track-position-checkbox" type="checkbox" onchange="track_position()">
+                            <span class="switch-slider round"></span>
+                        </label>
+                    </span>
+                    <span class="my-auto">
+                        <label for="fontSize" style="padding-right: 8px;">Font size</label>
+                    </span><span class="my-auto">
+                        <input style="width:46px;" type="number" id="fontSize-picker" onchange="font_size_picker_change(event);" name="fontSize" min="8" max="32">
+                    </span>
+                    <span class="ms-2 my-auto">
+                        <a title="change theme" id="theme_button" href="#"><svg class="icon"><use xlink:href="#moon"></use></svg></a>
+                    </span>
+                    <!--<span class="prompt">]</span>
+                    <input type="text" placeHolder="type commands here..." id="console-input" autocorrect="off" autocapitalize="off" spellcheck="false"/>-->
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content file-modal monaco-editor">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="fileModalLabel">New file</h1>
@@ -191,16 +214,48 @@
       <div class="modal-body">
         <span id='input_file_span'></span>
         <form onsubmit='return file_execute();'>
-            <label id='input_file1_label' for='input_file1'>New filepath</label>
-            <input type="text" placeholder="" id="input_file1" class="w-100">
-            <label id='input_file2_label' for='input_file2'>New filepath</label>
-            <input type="text" placeholder="" id="input_file2" class="w-100">
-            <button type="submit" class="mt-2" id="input_file_button">Create</button>
+            <label id='select_file_default_label' for='select_file_default' class="form-label">Template</label>
+            <select id="select_file_default" onchange="select_file_default_changed()" class="form-control">
+                <option value="empty" selected>Empty file</option>
+            </select>
+            <label id='input_file1_label' for='input_file1' class="form-label">New filepath</label>
+            <input type="text" placeholder="" id="input_file1" class="form-control">
+            <label id='input_file2_label' for='input_file2' class="form-label">New filepath</label>
+            <input type="text" placeholder="" id="input_file2" class="form-control">
+            <button type="submit" class="mt-2 btn btn-primary" id="input_file_button">Create</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="buildModal" tabindex="-1" aria-labelledby="buildModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content file-modal monaco-editor">
+            <div class="modal-header">
+                <button class="btn btn-primary" onclick='build_modified()'>Build modified</button>
+                <button class="ms-2 btn btn-success" onclick='build_all()'>Build all</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span id='buildModal-label'></span>
+                <div id='buildModal-modified'>
+                    <h5 class="">Modified</h5>
+                    <div id='buildModal-modified-list'></div>
+                </div>
+                <div id='buildModal-build'>
+                    <h5 class="">Recently build</h5>
+                    <div id='buildModal-build-list'></div>
+                </div>
+                <div id='buildModal-unchanged'>
+                    <h5 class="">Unchanged</h5>
+                    <div id='buildModal-unchanged-list'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="monaco-editor/min/vs/loader.js"></script>
 <script>

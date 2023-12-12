@@ -33,14 +33,17 @@ from colide import server_interface # change the path accordingly
 def index(request, path):
     root_folder = "your_root_folder" # This is the root folder for the files that you want to edit in the editor.
     try:
-        user_id = int(request.COOKIES["user_id"]) # The user id must be the uid of a linux user with access to the directory specified by root_folder.
-        user_session_id = request.COOKIES["user_session_id"]
+        dev_user = {
+            'id': request.COOKIES["user_id"],  # The user id must be the uid of a linux user with access to the directory specified by root_folder
+            'session_id': request.COOKIES["user_session_id"],
+            'alias': request.COOKIES["user_alias"],
+        }
         # (!) If not done already, make sure to also verify the session id for the user. (!)
-        user_alias = request.COOKIES["user_alias"]
+
     except:
         return HttpResponseBadRequest("Invalid user.")
     
-    return server_interface.handle_request(request, root_folder, user_id, user_session_id, user_alias)
+    return server_interface.handle_request(request, root_folder, dev_user)
 ```
 
 # Security

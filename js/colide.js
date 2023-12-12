@@ -43,6 +43,7 @@ title = document.title
 server_interface_path = "server_interface.py{% if edit_webf %}?edit_webf=1{% endif %}"
 template_folder_names = ['dev_sites','frontend/sites','frontend/templates']
 file_tree = {};
+default_files = [];
 current_file = "{{request.GET.file}}";
 current_file_tree_selected_element = null;
 last_files = [];
@@ -77,13 +78,20 @@ init_file_running = false;
 {% include './editor.js' %}
 {% include './marks.js' %}
 {% include './colide_sync.js' %}
+{% include './build.js' %}
 
 init_editor();
 init_file_tree();
+init_build_hooks();
 
 window.onbeforeunload = function() {
     if(unsaved_content)
         return "Not all changes were saved yet.";
+}
+
+function reload_colide() {
+  reload_files();
+  reload_build_hooks();
 }
 
 var intervalId = window.setInterval(function(){
@@ -183,17 +191,17 @@ let m_pos_right;
 function resize_left(e){
   const dx = -m_pos + e.x;
   m_pos = e.x;
-  $("#sidebar").width((parseInt($("#sidebar").width()) + dx) + "px");
-  $("#code-area").width("calc( 100% - "+$("#sidebar").outerWidth()+"px );");
-  $("#code-area").width($("#top").width() - $("#sidebar").outerWidth());
+  $("#file-area").width((parseInt($("#file-area").width()) + dx) + "px");
+  $("#code-area").width("calc( 100% - "+$("#file-area").outerWidth()+"px )");
+  //$("#code-area").width($("#top").width() - $("#file-area").outerWidth());
   if ($("#sidebar-right").is(":visible"))
     $("#code-editor").width($("#code-area").width() - $("#sidebar-right").outerWidth());
   else
     $("#code-editor").width("100%");
 }
 
-$("#sidebar").mousedown(function (e) {
-  if (e.offsetX >= $("#sidebar").width()) {
+$("#file-area").mousedown(function (e) {
+  if (e.offsetX >= $("#file-area").width()) {
     m_pos = e.pageX;
     document.addEventListener("mousemove", resize_left, false);
   }
@@ -218,7 +226,7 @@ $(document).mouseup(function(){
 });
 
 $( window ).resize(function() {
-    $("#code-area").width("calc( 100% - "+$("#sidebar").outerWidth()+" );");
+    $("#code-area").width("calc( 100% - "+$("#file-area").outerWidth()+" )");
     if ($("#sidebar-right").is(":visible"))
         $("#code-editor").width($("#code-area").width() - $("#sidebar-right").outerWidth());
     else
