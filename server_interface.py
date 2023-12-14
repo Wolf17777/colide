@@ -50,7 +50,9 @@ def index(request, response_context, server_interface):
 #               }
 #               Info: Will only be called with path=root_folder
 #           build(path, hooks): Takes a path (absolute or relative to your os.getcwd()), a list of hooks like the ones given by get_hooks() and builds the corresponding files.
-#               Returns a string containing the logs of the build process.
+#               Returns success, log:
+#                    success: Boolean indicating if the build was successfull 
+#                    log: A string containing the logs of the build process
 #               Info: Will only be called with path=root_folder
 #           reload(): A function that reloads the server to render the most up to date files.
 #       }
@@ -124,11 +126,11 @@ def handle_request(request, root_folder, dev_user, default_files=None, build_int
         else:
             try:
                 hooks = json.loads(request_data["build"])
-                log = build_interface.build(root_folder,hooks)
+                build_success, log = build_interface.build(root_folder,hooks)
                 if log == None:
                     log = 'No logs availible'
                 success = True
-                result = {"answer":"success", 'log': log}
+                result = {"answer": "success" if build_success else 'Check logs for details.', 'log': log}
             except Exception as e:
                 success = False
                 result = "Internal error: "+str(e)
@@ -139,11 +141,11 @@ def handle_request(request, root_folder, dev_user, default_files=None, build_int
         else:
             try:
                 hooks = build_interface.get_hooks(root_folder)
-                log = build_interface.build(root_folder,hooks)
+                build_success, log = build_interface.build(root_folder,hooks)
                 if log == None:
                     log = 'No logs availible'
                 success = True
-                result = {"answer":"success", 'log': log}
+                result = {"answer": "success" if build_success else 'Check logs for details.', 'log': log}
             except Exception as e:
                 success = False
                 result = "Internal error: "+str(e)

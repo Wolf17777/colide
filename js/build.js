@@ -13,6 +13,17 @@ function init_dependencies() {
     modal_update();
 }
 
+function build_hooks_modified_changed() {
+    let c = 0;
+    for (let i = 0; i<build_hooks.length; i++) {
+        if (build_hooks_modified[i]==1) {
+            c+=1;
+        } 
+    }
+    if (c>0) $('#build_modify_counter').html(c);
+    else $('#build_modify_counter').html('');
+}
+
 function modal_update() {
     if (build_hooks.length == 0) {
         $('#buildModal-label').html('Build feature not active.');
@@ -28,7 +39,7 @@ function modal_update() {
     $('#buildModal-build-list').html('');
     $('#buildModal-unchanged-list').html('');
     for (let i = 0; i<build_hooks.length; i++) {
-        ihtml = '<div class="d-flex alert alert-secondary"><div><b>'+build_hooks[i].name+'</b><br>'+build_hooks[i].path+'</div>'
+        ihtml = '<div class="d-flex alert alert-secondary py-2"><p class="my-auto">'+build_hooks[i].path+'<b>'+build_hooks[i].name+'</b></p>'
         ihtml += '<button class="ms-auto btn btn-info" onclick="build_specific(['+i+'])">Build</button></div>';
         if (build_hooks_modified[i]==1) {
             ihtml=ihtml.replace('alert-secondary','alert-info');
@@ -64,6 +75,7 @@ function modal_update() {
 
 function build_open() {
     modal_update();
+    $("#buildLogsModal").modal('hide');
     $("#buildModal").modal('show');
 }
 
@@ -74,6 +86,7 @@ function after_build() {
     }
     build_running_hook_ids = [];
     modal_update();
+    build_hooks_modified_changed();
 }
 
 build_running = false;
@@ -87,8 +100,13 @@ function build_all() {
     }
 
     $.post( server_interface_path, { "build_all": 1 }, function( data ) {
-        if (data.answer != "success") alert("Building failed: " + data.answer);
+        if (data.answer != "success") {
+            alert("Building failed: " + data.answer);
+            build_running_hook_ids = [];
+        }
         else add_alert('Build finished. Check logs for details.', 'success', '', true, "#alert_div",4000);
+        $("#buildLogsModal-logs").val(data.log);
+        $('#buildLogsModal-logs').scrollTop($('#buildLogsModal-logs')[0].scrollHeight);
         after_build();
         build_running = false;
         $("#alert_build").alert('close');
@@ -111,8 +129,13 @@ function build_specific(hook_ids) {
     }
     
     $.post( server_interface_path, { "build": JSON.stringify(hooks) }, function( data ) {
-        if (data.answer != "success") alert("Building failed: " + data.answer);
+        if (data.answer != "success") {
+            alert("Building failed: " + data.answer);
+            build_running_hook_ids = [];
+        }
         else add_alert('Build finished. Check logs for details.', 'success', '', true, "#alert_div",4000);
+        $("#buildLogsModal-logs").val(data.log);
+        $('#buildLogsModal-logs').scrollTop($('#buildLogsModal-logs')[0].scrollHeight);
         after_build();
         build_running = false;
         $("#alert_build").alert('close');
@@ -154,4 +177,10 @@ function init_build_hooks() {
 
 function reload_build_hooks() {
     init_build_hooks();
+}
+
+
+function show_build_logs() {
+    $("#buildModal").modal('hide');
+    $("#buildLogsModal").modal('show');
 }
